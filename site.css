@@ -1,17 +1,53 @@
-.biobox {
+
+
+
+ .name_container{
+	 background-color:white;
+	 width:768px;
+	  
+	 font-size:2.5em;
+	 padding: 20px 20px 20px 20px;
+	 
+ }
+ .content_container{
+	 background-color:white;
+	 float: relative;
+	  
+ }
+ 
+ .image_container{
+	 background-color:white;
+	 width:330px;
+	 height:344px;
+	 float:left;
+	 border-radius: 50%;
+	 overflow: hidden;
+	 font-size:2.5em;
+	 margin: 20px 20px 20px 20px;
+ }
+ 
+ .bio_container {
     border-width: 2px;
     border-style: solid;
     border-color: black;
-    width: 320px;
-    padding: 10px 10px 10px 10px;
+    width: 330px;
+	height:344px;
+    padding: 20px 20px 20px 20px;
+	float:left;
 }
-
+.clear{
+	clear:left;
+}
+.news_container{
+	background-color:white;
+	 
+	 font-size:2.5em;
+	 padding: 20px 20px 20px 20px;
+}
 .newstitle{
 	background-color:blue;
 	color:white;
-	
-	padding: 10px 10px 10px 10px;
-	margin: 10px 10px 10px 10px;
+	 font-size:1.5em;
 	clear:all;
 	
 }
@@ -19,7 +55,7 @@
 .newssite{
 	background-color:white;
 	color:blue;
-	padding: 10px 10px 10px 10px;
-	margin: 0px 10px 10px 0px;
+	 font-size:.8em;
 	float:left;
+	padding:10px 10px 10px 10px;
 }
