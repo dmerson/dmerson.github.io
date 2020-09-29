@@ -63,3 +63,25 @@
   font-size: 2em;
   margin: 1em;
 }
+#rss_items{
+	border: 1px solid black;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+	width: 500px;
+	
+}
+.rss_title{
+	font-size:1.2em;
+	padding-bottom:5px;
+	
+}
+.rss_title a{
+	color:#8B0015;
+	background-color:
+	
+}
+
+.rss_description{
+	font-size:.8em;
+	padding-bottom:15px;
+}
