@@ -85,3 +85,26 @@
 	font-size:.8em;
 	padding-bottom:15px;
 }
+.cell{
+	border:1px solid black;
+	padding: 5px 5px 5px 5px;
+	margin: 10px 10px 10px 10px;
+	width:615px;
+}
+.cell_name{
+	font-weight:bold;
+}
+.cell_address{
+	font-family: Arial;
+}
+.cell_url{
+	font-family: Arial;
+	
+}
+.cell_url a{
+	color:#000;
+}
+.cell_phone{
+	padding-bottom:10px;
+	font-family: Arial;
+}

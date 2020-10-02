@@ -11,6 +11,7 @@
 		 
 			fetchWeather();
 			displayRSSFeed();
+			listSheet();
 		  }
 		   
 		  // get weather data from openweathermap and display the current temp
@@ -41,6 +42,28 @@
 					}
 				  }
 				});
+      }		    
+	  function listSheet() {
+        // list google sheet rows
+        fetch('https://api.sheetson.com/v2/sheets/Sheet1', {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer j8QmBTbiVPQKIoby-v0k-3RpgeuZke7iGJ6NfQN7SZNiaLOUU3BdBE6G6Ac',
+            'X-Sheetson-Spreadsheet-Id': '1B_EV_oBnHrLfzzv3EakY-YzaJn-AmBKc4Eqd2AM2VAc'
+          }
+        })
+        .then(function(resp) { return resp.json() })
+        .then(function(data) {
+          for (var i = 0; i < data.results.length; i++) {
+            var result = data.results[i];
+            let divElement = '<div class="cell">' + '<div class="cell_name">' + result.name + '</div>' + '<div class="cell_address">' + result.address + '</div>' + '<div class="cell_url"><a href="' + result.url + '">' + result.url + '</a></div>' + '<div class="cell_phone">' + result.phone + '</div>' + '</div>';
+            document.getElementById("sheet").innerHTML += divElement;
+          }
+        })
+        .catch(function() {
+          document.getElementById("sheet").innerHTML = "Error in listSheet function";
+        });
       }
     </script>
 </head>
@@ -75,5 +98,7 @@
 		 <div class="clear"></div>
 		<div id="weather"></div>
 		<div id="rss_items"></div>
+		<h1>COVID Testing Sites</h1>
+		<div id="sheet"></div>
 	</body>
 </html>
