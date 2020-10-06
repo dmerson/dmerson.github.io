@@ -4,6 +4,12 @@
 	<title>About Me</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="site.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
 	<script src="https://storage.googleapis.com/feednami-static/js/feednami-client-v1.0.1.js"></script>
 	    <script>
 		  window.onload = function() {
@@ -11,7 +17,8 @@
 		 
 			fetchWeather();
 			displayRSSFeed();
-			listSheet();
+			var mymap=drawMap();
+			listSheet(mymap);
 		  }
 		   
 		  // get weather data from openweathermap and display the current temp
@@ -25,6 +32,23 @@
 			  document.getElementById("weather").innerHTML = "Error in fetchWeather function";
 			});
 		  }
+		  function drawMap() {
+			  // draw a map using leafletjs and tiles from mapbox
+			  var mymap = L.map('mapid').setView([32.162664, -110.840809], 12);
+			  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+				  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				  maxZoom: 18,
+				  id: 'mapbox/streets-v11',
+				  tileSize: 512,
+				  zoomOffset: -1,
+				  accessToken: 'pk.eyJ1IjoiZG1lcnNvbiIsImEiOiJjajR2azZ1b3owcG15MzJwMmlqeHhkc3VmIn0.CVkbdvu9_Ar6YoqwL8PWVg'
+			  }).addTo(mymap);
+			  return mymap;
+			}
+			function addPin(mymap, lat, lon, name) {
+			  // add a pin to mymap at lat, lon with a popup
+			  L.marker([lat, lon]).addTo(mymap).bindPopup(name);
+			}
 		   function displayRSSFeed() {
 				// fetch an RSS feed and display the title and description
 				var origURL = 'https://www.espn.com/espn/rss/nba/news';
@@ -43,9 +67,9 @@
 				  }
 				});
       }		    
-	  function listSheet() {
+	  function listSheet(myMap) {
         // list google sheet rows
-        fetch('https://api.sheetson.com/v2/sheets/Sheet1', {
+        fetch('https://api.sheetson.com/v2/sheets/Sheet1?no-cache=true', {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
@@ -59,6 +83,8 @@
             var result = data.results[i];
             let divElement = '<div class="cell">' + '<div class="cell_name">' + result.name + '</div>' + '<div class="cell_address">' + result.address + '</div>' + '<div class="cell_url"><a href="' + result.url + '">' + result.url + '</a></div>' + '<div class="cell_phone">' + result.phone + '</div>' + '</div>';
             document.getElementById("sheet").innerHTML += divElement;
+			 
+			addPin(myMap,result.lat, result.lon,   "<strong>"  + result.name + "</strong><br>" + result.address);
           }
         })
         .catch(function() {
@@ -99,6 +125,7 @@
 		<div id="weather"></div>
 		<div id="rss_items"></div>
 		<h1>COVID Testing Sites</h1>
+		<div id="mapid"></div>
 		<div id="sheet"></div>
 	</body>
 </html>
