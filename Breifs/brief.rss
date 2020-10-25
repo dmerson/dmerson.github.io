@@ -1,0 +1,23 @@
+<rss version="2.0">
+<channel>
+<title>ESPN.Com F1 Story Summaries</title>
+<link>https://dmerson.github.io/about.html</link>
+<description>Class Description</description>
+<item>
+<pubDate>Sun, 25 Oct 2020 09:00:00 -0700</pubDate>
+<title>Class 18</title>
+<link>https://dmerson.github.io/about.html</link>
+<description>Intro to Google Actions</description>
+<enclosure url="https://dmerson.github.io/briefs/HaasStory.m4a" type="audio/mpeg" length="307940"/>
+<guid isPermaLink="false">https://dmerson.github.io/briefs/HaasStory.m4a</guid>
+</item>
+<item>
+<pubDate>Sun, 25 Oct 2020 09:00:00 -0700</pubDate>
+<title>Class 17</title>
+<link>https://dmerson.github.io/about.html</link>
+<description>Alexa News Briefs</description>
+<enclosure url="https://dmerson.github.io/briefs/HamiltonBrothersStory.m4a" type="audio/mpeg" length="375421"/>
+<guid isPermaLink="false">https://dmerson.github.io/briefs/HamiltonBrothersStory.m4a</guid>
+</item>
+</channel>
+</rss>
